@@ -14,10 +14,10 @@ class CreateColaboradoresTable extends Migration
     public function up()
     {
         Schema::create('colaboradores', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('nome');
             $table->string('email');
-            $table->string('cpf');
+            $table->string('cpf', 11)->unique();
             $table->string('data_admissao');
             $table->timestamps();
         });

@@ -1,3 +1,6 @@
 <?php
 
-Route::apiResource('colaboradores','api\ColaboradorController');
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\api\ColaboradorController;
+
+Route::get('colaboradores', 'api\ColaboradorController@index');
