@@ -35,24 +35,31 @@ class ColaboradorController extends Controller
 
     public function show($id)
     {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        //
+        $dados = $this->colaborador->find($id);
+        return response()->json($dados);
     }
 
 
     public function update(Request $request, $id)
     {
-        //
+        if (!$dados = $this->colaborador->find($id))
+            return response()->json(['error' => 'Nenhum registro encontrado!'], 404);
+            
+        $this->validate($request, $this->colaborador->rules());
+
+        $dadosForm = $request->all();
+
+        $dados->update($dadosForm);
+        return response()->json($dados);
     }
 
 
     public function destroy($id)
     {
-        //
+        if (!$dados = $this->colaborador->find($id)) {
+            return response()->json(['error' => 'Nenhum registro encontrado!'], 404);
+        }
+        $dados->delete();
+        return response()->json(['sucess' => 'Deletado com sucesso']);
     }
 }

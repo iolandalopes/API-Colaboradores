@@ -2,8 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('colaboradores', 'api\ColaboradorController@index');
+//Route::get('colaboradores', 'api\ColaboradorController@index');
 
-Route::post('colaboradores', 'api\ColaboradorController@store');
+//Route::post('colaboradores', 'api\ColaboradorController@store');
 
-//$this->apiResource('colaboradores', 'api\ColaboradorController');
+//Route::get('colaboradores/', 'api\ColaboradorController@show');
+
+//Route::delete('colaboradores/', 'api\ColaboradorController@destroy');
+
+Route::apiResource('colaboradores', 'api\ColaboradorController');
