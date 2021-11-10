@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ColaboradorUpdate;
 use Illuminate\Http\Request;
 use App\Models\Colaboradores;
 
@@ -26,9 +27,9 @@ class ColaboradorController extends Controller
     {
         $this->validate($request, $this->colaborador->rules());
 
-        $dadosform = $request->all();
+        $dadosForm = $request->all();
 
-        $dados = $this->colaborador->create($dadosform);
+        $dados = $this->colaborador->create($dadosForm);
 
         return response()->json($dados, 201);
     }
@@ -40,16 +41,17 @@ class ColaboradorController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(ColaboradorUpdate $request, $id)
     {
         if (!$dados = $this->colaborador->find($id))
             return response()->json(['error' => 'Nenhum registro encontrado!'], 404);
-            
-        $this->validate($request, $this->colaborador->rules());
+
+
 
         $dadosForm = $request->all();
 
         $dados->update($dadosForm);
+
         return response()->json($dados);
     }
 
